@@ -20,10 +20,16 @@
 <template>
    <div class="container">
      <header>
-         <div class="line-content flex flex-between">
-            <h2>/dev/all</h2>
-            <h2>Taverna</h2>
-         </div>
+         <div class="line-content flex flex-center color-menu-bar">
+          <div class="menu-bar">
+              <div>
+                  <a class="logo">/dev/all</a>
+              </div>
+              <div class="menu-bar-options"> 
+                  <ul><li _ngcontent-c0=""><a _ngcontent-c0="" class="menu-link" href="https://discord.gg/JyXzTcP" style="color: #1f8ef1;" target="_blank">Discord</a></li><li _ngcontent-c0=""><a _ngcontent-c0="" class="menu-link" href="https://taverna.devall.com.br" style="color: #00d6b4;" target="_blank">Taverna</a></li><li _ngcontent-c0=""><a _ngcontent-c0="" class="menu-link" href="https://revista.devall.com.br" target="_blank">Revista</a></li><li _ngcontent-c0=""><a _ngcontent-c0="" class="menu-link" href="/blogs">Blogs</a></li><!----><li _ngcontent-c0=""><a _ngcontent-c0="" class="menu-link" href="/sobre">Sobre</a></li><!----><li _ngcontent-c0=""><a _ngcontent-c0="" class="menu-link" href="/cadastro">Cadastre-se!</a></li><!----><li _ngcontent-c0=""><a _ngcontent-c0="" class="menu-link" href="/auth">Entrar</a></li><!----></ul>
+              </div>
+           </div>
+        </div>
      </header>
      <main> 
        <div class="line-content flex flex-center space-top">
@@ -46,17 +52,17 @@
               <div class="line-content">
                 <span class="text-title"> {{ post.titulo }} </span>
               </div>
-              <div class="line-content space-top">
+              <div class="line-content space-top text-body">
                 <span class="sub-text"> {{ post.resumo }} </span>
               </div>
               <div class="line-content space-top">
                 <div class="line-content">
-                  <div class="line-content">
+                  <div class="line-content text-body">
                     Cliques: {{post.cliques}} 
                     {{post.dataPublicacao}} 
                   </div>
                 </div>
-                <div class="line-content">
+                <div class="line-content text-body">
                   Em: <a href="#">{{post.blog.nome}}</a>
                 </div>
               </div>
@@ -69,29 +75,74 @@
 </template>
 
 <style>
-  
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,100;1,200&family=Roboto:ital@1&family=Share+Tech+Mono&display=swap');
+  body {
+    background-color: #1e1e2e;
+  }
   div h2 {
    padding: 0 20px; 
   }
 
+  ul {
+      display: flex; 
+      flex-direction: row;
+      justify-content: space-around;
+      list-style-type: none;
+
+    }
+  li {
+    font-family: "Audiowide", sans-serif;
+  } 
+  li a {
+      text-decoration: none;
+      color: white;
+  }
+
+  div a {
+      color: black;
+  }
+
   header {
-    border-bottom: 2px solid black;
+    border-bottom: 2px solid #fd5d93;
   }
 
   main div input {
-    width: 60%;
-    padding: 5px;
+    width: 80%;
+    padding: 10px;
   }
 
   .container {
     height: auto;
     width: 100%; 
-    border: 1px solid red;
+    /*border: 1px solid red;*/
     margin: 0 auto;
   }
   .line-content {
     display: block;
     width: 100%;
+  }
+
+  .menu-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0px;
+    width: 85%;
+  } 
+  .color-menu-bar {
+      background-color: #27293d;
+    }
+  .logo {
+    background: #000;
+    color: #fff;
+    padding: .2em;
+    border-radius: 8px;
+    font-size: 2em;
+    font-family: "Audiowide", sans-serif;
+    font-weight: 400;
+    float: left;
+    margin-left: 7%;
+    font-display: swap;
   }
   
   .flex {
@@ -107,7 +158,7 @@
   }
   
   .space-top {
-      margin-top: 20px;
+      margin-top: 40px;
   }
   .space-around {
       margin: 0 5px;
@@ -120,14 +171,15 @@
       width: 100%; 
       height: auto;
       padding: 5px 60px;
-      border: 2px solid red;
+      /*border: 2px solid red;*/
   }
   
   .box-post {
     display: block; 
     width: 90%;
+    background-color: #fff;
     height: auto;
-    box-shadow: 1px 2px 5px gray;
+    box-shadow: 1px 2px 5px white;
     border-radius: 10px;
   } 
 
@@ -138,6 +190,15 @@
   .text-title {
       font-size: 24px;
       font-weight: 800;
+      font-family: 'Montserrat', sans-serif;
+  }
+
+  .text-body {
+      font-family: 'Share Tech Mono', monospace;
+    }
+
+  .menu-bar-options {
+    width: 60%;
   }
   
 

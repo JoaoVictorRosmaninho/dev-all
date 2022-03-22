@@ -30,14 +30,11 @@
         inputTextSearch(e) {
             this.textSearch = e.target.value;
          },
-        getPostContent(id) {
-            axios.get(`https://api.devall.com.br/api/v1/post/clique/${id}`)
-            .then((response) => (this.postContent = response.data))
+        SearchApi() {
+            axios.get(`https://api.devall.com.br/api/v1/post?search=${this.textSearch}`)
+            .then((response) => (this.posts = response.data))
             .catch((err) => (console.log(err)));
-
-            return this.postContent.url
-
-          }    
+        } 
       }
   } 
 

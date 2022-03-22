@@ -7,10 +7,12 @@
     "preview": "vite preview --port 5050"
   },
   "dependencies": {
+    "axios": "^0.26.1",
+    "bootstrap-icons": "^1.8.1",
     "vue": "^3.2.31"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^2.2.2",
-    "vite": "^2.8.4"
+    "vite": "^2.8.6"
   }
 }

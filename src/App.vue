@@ -4,7 +4,8 @@
   export default {
     data() {
         return {
-            posts: []
+            posts: [], 
+            textSearch: ""
           }
       }, 
 
@@ -12,7 +13,17 @@
         axios.get("https://api.devall.com.br/api/v1/post") 
         .then((response) => (this.posts = response.data))
         .catch((err) => (console.log(err)));
-      }
+      }, 
+    methods: {
+        inputTextSearch(e) {
+            this.textSearch = e.target.value;
+         },
+        SearchApi() {
+            axios.get(`https://api.devall.com.br/api/v1/post?search=${this.textSearch}`)
+            .then((response) => (this.posts = response.data))
+            .catch((err) => (console.log(err)));
+        }
+    }
   } 
 
 </script>
@@ -33,17 +44,19 @@
      </header>
      <main> 
        <div class="line-content flex flex-center space-top">
-          <input type="text" class="space-around" placeholder="Encontre aqui">
-          <svg 
-          xmlns="http://www.w3.org/2000/svg" 
-          width="16" 
-          height="16" 
-          fill="currentColor" 
-          class="bi bi-search space-around" 
-          viewBox="0 0 16 16">
+          <input type="text" v-model="textSearch" @input="inputTextSearch" class="space-around" placeholder="Encontre aqui">
+          <button  @click="SearchApi"> 
+            <svg 
+            xmlns="http://www.w3.org/2000/svg" 
+            width="16" 
+            height="16" 
+            fill="currentColor" 
+            class="bi bi-search space-around" 
+            viewBox="0 0 16 16">
               <path 
                 d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-      </svg>
+          </svg>
+          </button>
        </div>
        <div class="posts">
           <div v-for="post in posts" :key="post.id" class="post-container">

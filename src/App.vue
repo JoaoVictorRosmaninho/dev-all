@@ -5,25 +5,40 @@
     data() {
         return {
             posts: [], 
-            textSearch: ""
+            textSearch: "", 
+            postContent: {}
           }
       }, 
 
     mounted() {
         axios.get("https://api.devall.com.br/api/v1/post") 
-        .then((response) => (this.posts = response.data))
+        .then((response) => {
+          this.posts = response.data
+          this.posts.map((element) => {
+              axios.get(`https://api.devall.com.br/api/v1/post/clique/${element.id}`)
+              .then((response) => {
+                  element.url = response.data.url;
+                  console.log(element.url);
+              })
+          })
+        })
         .catch((err) => (console.log(err)));
+        
+
       }, 
     methods: {
         inputTextSearch(e) {
             this.textSearch = e.target.value;
          },
-        SearchApi() {
-            axios.get(`https://api.devall.com.br/api/v1/post?search=${this.textSearch}`)
-            .then((response) => (this.posts = response.data))
+        getPostContent(id) {
+            axios.get(`https://api.devall.com.br/api/v1/post/clique/${id}`)
+            .then((response) => (this.postContent = response.data))
             .catch((err) => (console.log(err)));
-        }
-    }
+
+            return this.postContent.url
+
+          }    
+      }
   } 
 
 </script>
@@ -63,7 +78,7 @@
             <div class="box-post">
               <div class="post-body">
               <div class="line-content">
-                <span class="text-title"> {{ post.titulo }} </span>
+                <a v-bind:href="post.url"><span class="text-title"> {{ post.titulo }} </span></a>
               </div>
               <div class="line-content space-top text-body">
                 <span class="sub-text"> {{ post.resumo }} </span>
@@ -122,6 +137,8 @@
   main div input {
     width: 80%;
     padding: 10px;
+    border-radius: 8px;
+    border: 0px;
   }
 
   .container {
